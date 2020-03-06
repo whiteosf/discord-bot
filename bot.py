@@ -20,5 +20,5 @@ async def say_hello(ctx):
 #new command
 
 bot.run(TOKEN)
-
+ #random stuff
 
