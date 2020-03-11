@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 
+import random
+
 import discord
 from discord.ext import commands
 
@@ -17,7 +19,10 @@ async def on_ready():
 async def say_hello(ctx):
     await ctx.send(f"Hi {ctx.author.display_name}")
 
-#new command
+@bot.command(name="Sacrifice", help="Sacrifice stuff")
+async def sacrifice(ctx):
+    opt = ["Yummy", "Nom", "Thank you", "*screeching*", "Mort is thankful", "I need more"]
+    await ctx.send(opt[random.randint(0, 5)])
 
 bot.run(TOKEN)
  #random stuff
