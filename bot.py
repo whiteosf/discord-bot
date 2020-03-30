@@ -20,10 +20,10 @@ async def say_hello(ctx):
     await ctx.send(f"Hi {ctx.author.display_name}")
 
 @bot.command(name="Sacrifice", help="Sacrifice stuff")
-async def sacrifice(ctx):
-    opt = ["Yummy", "Nom", "Thank you", "*screeching*", "Mort is thankful", "I need more"]
-    await ctx.send(opt[random.randint(0, 5)])
-
+async def sacrifice(ctx, x):
+    opt = ["Yummy", "Nom", "Thank you", "*screeching*", "Mort is thankful", "I need more", "Scrumptious", "UWU"]
+    await ctx.send(opt[random.randint(0, 7)])
+    
 bot.run(TOKEN)
  #random stuff
 
