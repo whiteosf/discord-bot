@@ -1,6 +1,8 @@
 import os
 from dotenv import load_dotenv
 
+import random
+
 import discord
 from discord.ext import commands
 
@@ -30,6 +32,10 @@ async def equation(ctx, a, b, c):
         await ctx.send("There is no x to solve for")
 
 #new command
+@bot.command(name="Sacrifice", help="Sacrifice stuff")
+async def sacrifice(ctx):
+    opt = ["Yummy", "Nom", "Thank you", "*screeching*", "Mort is thankful", "I need more"]
+    await ctx.send(opt[random.randint(0, 5)])
 
 bot.run(TOKEN)
  #random stuff
