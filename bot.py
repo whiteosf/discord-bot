@@ -32,6 +32,6 @@ async def backstory(ctx):
 async def power(ctx, a, y):
     await ctx.send(a**y)
 
-tiawabot.run(TOKEN)
+bot.run(TOKEN)
  #random stuff
 
