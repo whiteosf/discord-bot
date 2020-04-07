@@ -34,8 +34,24 @@ async def equation(ctx, a, b, c):
     elif a==0 & b==0:
         await ctx.send("There is no x to solve for")
 
-@bot.command(name="Sacrifice", help="Sacrifice stuff")q
-async def sacrifice(ctx, args):
+@bit.command(name = "plot", help = "")
+async def plot(*args, x):
+    args=[*args]
+    answr=0
+    degree = len(args)-1
+    if x==0:
+        answr=args[-1]
+    elif x==1:
+        answr=sum(args)
+    else:
+        for i in range(0, degree+1):
+            answr+= args[i]*x**degree
+            degree-=1
+    await ctx.send(f"y = {answr}")
+
+
+@bot.command(name="Sacrifice", help="Sacrifice stuff")
+async def sacrifice(ctx, *args):
     opt = ["Yummy", "Nom", "Thank you", "*screeching*", "Mort is thankful", "I need more", "Scrumptious", "UWU"]
     await ctx.send(opt[random.randint(0, 7)])
 
