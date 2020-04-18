@@ -24,18 +24,38 @@ async def say_hello(ctx):
 @bot.command(name = "equ", help="Solves your sacrifised quadratic and linear equations, takes in three arguments: a, b, c, which are coefficients. Even if coefficient is 0, it has to be listed. As example for equation 3x-4=0 you have to send 0 3 -4 as argumants.")
 async def equation(ctx, a, b, c):
     if a==0:
-        await ctx.send(f"x = {(-c)/b}")
+        await ctx.send(f"{ctx.author.display_name}, equation: x = {(-c)/b}")
     elif a!=0:
         discr= b**2 - 4*a*c
+        sqr = square_root_simplifier(discr)
         if discr>=0:
-            await ctx.send(f"x = {(-b+math.sqrt(discr))/2*a} ,  {(-b-math.sqrt(discr))/2*a]}")
+            num = math.sqrt(discr)
+            if isinstance(num, int)==True:
+                await ctx.send(f"{ctx.author.display_name}, equation: x = {-b+num/2*a} ,  {-b-num/2*a}")
+            elif isinstance(num, int)==False:
+                await ctx.send(f"{ctx.author.display_name}, equation: x = -({b} ± √{discr})/{2*a} ")
         else:
-            await ctx.send(f"x = ({-b} ± i√{discr})/{2*a}")
+            if sqr[0]==1:
+                await ctx.send(f"{ctx.author.display_name}, equation: x = ({-b} ± i√{discr})/{2*a}")
+            else:
+                await ctx.send(f"{ctx.author.display_name}, equation: x = ({-b} ± {sqr[0]}i√{sqr[1]})/{2*a}")
     elif a==0 & b==0:
-        await ctx.send("There is no x to solve for")
+        await ctx.send(f"{ctx.author.display_name}, equation: There is no x to solve for")
 
-@bit.command(name = "plot", help = "")
-async def plot(*args, x):
+@bot.command(name = "sqrt_simplifier", help = "Simplifies square roots, takes in radicand as argument.")
+async def sqrt_simplifier(ctx, radicand):
+    ans = square_root_simplifier(radicand)
+    if radicand>0:
+        await ctx.send(f"{ctx.author.display_name} sqrt simplifier: {ans[0]}√{ans[1]}")
+    elif radicand == 0:
+        await ctx.send("0")
+    else:
+        await ctx.send(f"{ctx.author.display_name}, sqrt simplifier: {ans[0]}i√{ans[1]}")
+        
+
+
+@bot.command(name = "plot", help = "")
+async def plot(ctx, *args, x):
     args=[*args]
     answr=0
     degree = len(args)-1
@@ -47,7 +67,7 @@ async def plot(*args, x):
         for i in range(0, degree+1):
             answr+= args[i]*x**degree
             degree-=1
-    await ctx.send(f"y = {answr}")
+    await ctx.send(f"{ctx.author.display_name}, plot: y = {answr}")
 
 
 @bot.command(name="Sacrifice", help="Sacrifice stuff")
@@ -61,7 +81,29 @@ async def backstory(ctx):
 
 @bot.command(name="Power", help="Input a number and the exponent (in that order) and Mort returns the answer")
 async def power(ctx, a, y):
-    await ctx.send(a**y)
+    await ctx.send(f"{ctx.author.display_name}, power: {a**y}")
+
+
+
+
+def perfect_squares_generator(n):
+    s = 2
+    while n>s**2:
+        yield s**2
+        s+=1
+def square_root_simplifier(radicand):
+    exponent = 1
+    n = perfect_squares_generator(radicand/2)
+    try:
+        s = next(n)
+        while s<radicand/2:
+            while radicand%s==0:
+                radicand/=s
+                exponent*=math.sqrt(s)
+            s = next(n)
+    except StopIteration:
+        pass
+    return [int(exponent), int(radicand)]
 
 bot.run(TOKEN)
  #random stuff
