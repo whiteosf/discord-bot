@@ -92,18 +92,18 @@ def perfect_squares_generator(n):
         yield s**2
         s+=1
 def square_root_simplifier(radicand):
-    exponent = 1
+    coefficient = 1
     n = perfect_squares_generator(radicand/2)
     try:
         s = next(n)
         while s<radicand/2:
             while radicand%s==0:
                 radicand/=s
-                exponent*=math.sqrt(s)
+                coefficient*=math.sqrt(s)
             s = next(n)
     except StopIteration:
         pass
-    return [int(exponent), int(radicand)]
+    return [int(coefficient), int(radicand)]
 
 bot.run(TOKEN)
  #random stuff
