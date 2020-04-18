@@ -83,6 +83,12 @@ async def backstory(ctx):
 async def power(ctx, a, y):
     await ctx.send(f"{ctx.author.display_name}, power: {a**y}")
 
+@bot.command(name = "linear systems", help="Solves linear systems of equations in the form of y = ax + b and y = cx + d. Enter the a, b, c, and d of the equations.")
+async def linear_systems(ctx, a, b, c, d):    
+    x = (d-b)/(a-c)    
+    y = (a*x)+b    
+    await ctx.send(f"Your x value is equal to {x} and your y value is equal to {y}"))
+
 
 
 
