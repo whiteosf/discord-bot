@@ -6,17 +6,17 @@ The bot (once completed) will be able to return understandable answers to simple
 
 Functions: 
 Add     Takes in an unlimited number of arguments and returns their sum. 
-Subtract     Takes in two arguments and retuns their difference.
+Subtract     Takes in two arguments and returns their difference.
 Multiply     Takes in two arguments and returns their product. 
 Divide      Takes in two arguments and returns quotient.
 Power       Takes in two arguments and retuns the result of the first argument
              being raised to a power of the second argument. 
 
-Sacrifice       Tt is time to sacrifice your gifts to the Great God
-Hello       greets you.
+Sacrifice       It is time to sacrifice your gifts to the Great God
+Hello       Greets you.
 
 Root       Takes in two arguments (a, n) and returns nth root of a.     
-Plot        Finds y points for your pollinimial function. Takes is arguments being 
+Plot        Finds y points for your polyomial function. Takes is arguments being 
             coefficients of the polynomial with account on those, which are 0s. 
             The last argument will be a value of x you are willing to solve for.
 Sqrt Simplifier     Takes in radicand as argument and returns algebraicaly simplified square root.

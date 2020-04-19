@@ -10,6 +10,22 @@ import math
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
+
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    for guild in client.guilds:
+        if guild.name == GUILD:
+            break
+
+    print(
+        f'{client.user} is connected to the following guild:\n'
+        f'{guild.name}(id: {guild.id})'
+    )
+
+client.run(TOKEN)
 
 bot = commands.Bot(command_prefix='!')
 
@@ -111,10 +127,5 @@ def square_root_simplifier(radicand):
         pass
     return [int(coefficient), int(radicand)]
 
-<<<<<<< HEAD
-bot.run(TOK)
-=======
 bot.run(TOKEN)
- #random stuff
->>>>>>> 6c7ee0b3b9b6e2c8861eab9ce5951e0baa844f35
 
