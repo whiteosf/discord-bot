@@ -19,6 +19,7 @@ Root       Takes in two arguments (a, n) and returns nth root of a.
 Plot        Finds y points for your pollinimial function. Takes is arguments being 
             coefficients of the polynomial with account on those, which are 0s. 
             The last argument will be a value of x you are willing to solve for.
+Sqrt Simplifier     Takes in radicand as argument and returns algebraicaly simplified square root.
 
 Backstory       Find out more about the God and his story.
 
