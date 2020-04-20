@@ -113,7 +113,7 @@ async def linear_systems(ctx, a:int, b:int, c:int, d:int):
 async def add_and_subtract(ctx, *args):
     ans=0
     for i in args:
-        ans+=i
+        ans+=float(i)
     await ctx.send(f"{ctx.authour.display_name}, add_sub: {ans}")
 
 
@@ -147,13 +147,6 @@ def square_root_simplifier(radicand):
         pass
     return [int(coefficient), int(radicand)]
 
-def args_check (*args):
-    b=0
-    for i in args:
-        if isinstance(i, int) or isinstance(i, float):
-            b+=1
-    if b == len(args):
-        return True
 
 bot.run(TOKEN)
 
