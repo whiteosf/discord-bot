@@ -65,11 +65,12 @@ async def sqrt_simplifier(ctx, radicand:int):
             await ctx.send(f"{ctx.author.display_name} sqrt simplifier: {ans[0]}√{ans[1]}")
     elif radicand == 0:
         await ctx.send("0")
-    else:
+    elif radicand<0:
+        ans = square_root_simplifier(-radicand)
         if ans[1]==1:
             await ctx.send(f"{ctx.author.display_name}, sqrt simplifier: {ans[0]}i")
         else:
-            await ctx.send(f"{ctx.author.display_name}, sqrt simplifier: {ans[0]}i√{ans[1]}")
+            await ctx.send(f"{ctx.author.display_name}, sqrt simplifier: {ans[0]}i√{-ans[1]}")
         
 
 
