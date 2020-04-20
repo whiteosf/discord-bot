@@ -96,7 +96,7 @@ async def add_and_subtract(ctx, *args):
     await ctx.send(sum(*args))
     
 @bot.command(name = "multiply", help= "multiplies two values")
-async def multiply(ctx,int:x,int:y):
+async def multiply(ctx,x,y):
     await ctx.send(x*y)
 
 @bot.command(name = "divide", help = "divides two values")
