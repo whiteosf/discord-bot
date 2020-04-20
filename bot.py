@@ -100,7 +100,7 @@ async def multiply(ctx,x,y):
     await ctx.send(x*y)
 
 @bot.command(name = "divide", help = "divides two values")
-async def divide(ctx, x,y):
+async def divide(ctx, x:int,y:int):
     await ctx.send(x/y)
 
 
