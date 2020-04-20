@@ -12,21 +12,6 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
-client = discord.Client()
-
-@client.event
-async def on_ready():
-    for guild in client.guilds:
-        if guild.name == GUILD:
-            break
-
-    print(
-        f'{client.user} is connected to the following guild:\n'
-        f'{guild.name}(id: {guild.id})'
-    )
-
-client.run(TOKEN)
-
 bot = commands.Bot(command_prefix='!')
 
 @bot.listen()
@@ -103,7 +88,7 @@ async def power(ctx, a, y):
 async def linear_systems(ctx, a, b, c, d):    
     x = (d-b)/(a-c)    
     y = (a*x)+b    
-    await ctx.send(f"Your x value is equal to {x} and your y value is equal to {y}"))
+    await ctx.send(f"Your x value is equal to {x} and your y value is equal to {y}")
 
 
 
