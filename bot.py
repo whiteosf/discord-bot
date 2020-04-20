@@ -110,11 +110,9 @@ async def linear_systems(ctx, a:int, b:int, c:int, d:int):
     await ctx.send(f"Your x value is equal to {x} and your y value is equal to {y}")
     
 @bot.command("add_subtract", help = "takes values that you want to add and subtract. eg. putting in 12, -10, 1 would give you 3.")
-async def add_and_subtract(ctx, *args:float):
-    if args_check(*args)==True:
-        await ctx.send(sum(*args))
-    else:
-        await ctx.send("all arguments have to be numbers")
+async def add_and_subtract(ctx, **args):
+        await ctx.send(sum(**args))
+
     
 @bot.command(name = "multiply", help= "multiplies two values")
 async def multiply(ctx,x:int,y:int):
