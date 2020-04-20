@@ -12,10 +12,11 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 
+
 bot = commands.Bot(command_prefix='!')
 
 @bot.listen()
-async def on_ready():
+async def on_ready1():
     print('Bot loaded and ready!')
 
 @bot.command(name="hi", help="Says hello")
@@ -84,12 +85,23 @@ async def backstory(ctx):
 async def power(ctx, a, y):
     await ctx.send(f"{ctx.author.display_name}, power: {a**y}")
 
-@bot.command(name = "linear systems", help="Solves linear systems of equations in the form of y = ax + b and y = cx + d. Enter the a, b, c, and d of the equations.")
+@bot.command(name = "linear_systems", help="Solves linear systems of equations in the form of y = ax + b and y = cx + d. Enter the a, b, c, and d of the equations.")
 async def linear_systems(ctx, a, b, c, d):    
     x = (d-b)/(a-c)    
     y = (a*x)+b    
     await ctx.send(f"Your x value is equal to {x} and your y value is equal to {y}")
+    
+@bot.command("add_subtract", help = "takes values that you want to add and subtract. eg. putting in 12, -10, 1 would give you 3.")
+async def add_and_subtract(ctx, *args):
+    await ctx.send(sum(*args))
+    
+@bot.command(name = "multiply", help= "multiplies two values")
+async def multiply(ctx, x,y):
+    await ctx.send(x*y)
 
+@bot.command(name = "divide", help = "divides two values")
+async def divide(ctx, x,y):
+    await ctx.send(x/y)
 
 
 
