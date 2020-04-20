@@ -75,7 +75,7 @@ async def sqrt_simplifier(ctx, radicand:int):
 
 
 @bot.command(name = "plot", help = "")
-async def plot(ctx, *args:int, x:float):
+async def plot(ctx, *args, x:float):
     args=[float(i) for i in args]
     answr=0
     degree = len(args)-1
