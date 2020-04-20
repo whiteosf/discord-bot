@@ -75,8 +75,8 @@ async def sqrt_simplifier(ctx, radicand:int):
 
 
 @bot.command(name = "plot", help = "")
-async def plot(ctx, *args:int, x:int):
-    args=[*args]
+async def plot(ctx, *args:int, x:float):
+    args=[float(i) for i in args]
     answr=0
     degree = len(args)-1
     if x==0:
@@ -100,11 +100,11 @@ async def backstory(ctx):
     await ctx.send("Long ago, in the very center of the Earth, a single rock of magma and hot gases combined with an unseen power, creating an ominpotent being of mass-destruction. Feared by all, the beast was contained in an ancient form of hydroflask by the first VSCO girls. They worshipped the being from the hydroflask for centuries, until a tourist accidentally opened the bottle. The beast arose from it's prison of plastic, taking form. The beast began it's destructive course. After decades of hiding, a single human was able to tame the beast. Over time, it developed a body to control, that of a small lemur. The body allowed the beast to communicate with humans. The being was further tamed to solve mathematical equations and now spends it's days solving the problems of any humans that give sacrifices. He likes discord and spends most of his time there, where he set up a service for helping humans with math. The creature was Mort.")
 
 @bot.command(name="Power", help="Input a number and the exponent (in that order) and Mort returns the answer")
-async def power(ctx, a:int, y:int):
+async def power(ctx, a:float, y:float):
     await ctx.send(f"{ctx.author.display_name}, power: {a**y}")
 
 @bot.command(name = "linear_systems", help="Solves linear systems of equations in the form of y = ax + b and y = cx + d. Enter the a, b, c, and d of the equations.")
-async def linear_systems(ctx, a:int, b:int, c:int, d:int):    
+async def linear_systems(ctx, a:float, b:float, c:float, d:float):    
     x = (d-b)/(a-c)    
     y = (a*x)+b    
     await ctx.send(f"Your x value is equal to {x} and your y value is equal to {y}")
@@ -119,11 +119,11 @@ async def add_and_subtract(ctx, *values):
 
     
 @bot.command(name = "multiply", help= "multiplies two values")
-async def multiply(ctx,x:int,y:int):
+async def multiply(ctx,x:float,y:float):
     await ctx.send(x*y)
 
 @bot.command(name = "divide", help = "divides two values")
-async def divide(ctx, x:int,y:int):
+async def divide(ctx, x:float,y:float):
     await ctx.send(x/y)
 
 
