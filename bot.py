@@ -25,24 +25,35 @@ async def say_hello(ctx):
 
 @bot.command(name = "equ", help="Solves your sacrifised quadratic and linear equations, takes in three arguments: a, b, c, which are coefficients. Even if coefficient is 0, it has to be listed. As example for equation 3x-4=0 you have to send 0 3 -4 as argumants.")
 async def equation(ctx, a:int, b:int, c:int):
-    if a==0:
-        await ctx.send(f"{ctx.author.display_name}, equation: x = {(-c)/b}")
+    if a==0 and b!=0:
+        await ctx.send( f"{ctx.author.display_name}, equation: x = {(-c)/b}")
     elif a!=0:
         discr= b**2 - 4*a*c
-        sqr = square_root_simplifier(discr)
-        if discr>=0:
+        if discr>0:
+            sqr = square_root_simplifier(discr)
             num = math.sqrt(discr)
-            if isinstance(num, int)==True:
-                await ctx.send(f"{ctx.author.display_name}, equation: x = {-b+num/2*a} ,  {-b-num/2*a}")
-            elif isinstance(num, int)==False:
-                await ctx.send(f"{ctx.author.display_name}, equation: x = -({b} ± √{discr})/{2*a} ")
+            if num%1==0:
+                await ctx.send (f"{ctx.author.display_name}, equation: x = {-b+num/2*a} ,  {-b-num/2*a}")
+            elif num%1!=0:
+                if sqr[0]==1:
+                    await ctx.send (f"{ctx.author.display_name}, equation: x = ({b} ± √{sqr[1]})/{2*a} ")
+                elif sqr[0]!=1:
+                    await ctx.send (f"{ctx.author.display_name}, equation: x = ({b} ± {sqr[0]}√{sqr[1]})/{2*a} ")
+        elif discr==0:
+            await ctx.send (f"{ctx.author.display_name}, equation: x = {-b/2*a} ")
         else:
-            if sqr[0]==1:
-                await ctx.send(f"{ctx.author.display_name}, equation: x = ({-b} ± i√{discr})/{2*a}")
-            else:
-                await ctx.send(f"{ctx.author.display_name}, equation: x = ({-b} ± {sqr[0]}i√{sqr[1]})/{2*a}")
+            discr=0-discr
+            sqr = square_root_simplifier(discr)
+            num = math.sqrt(discr)
+            if num%1==0:
+                await ctx.send (f"{ctx.author.display_name}, equation: x = ({-b} ± i{int(num)})/{2*a}")
+            elif num%1!=0:
+                if sqr[0]==1:
+                    await ctx.send (f"{ctx.author.display_name}, equation: x = ({-b} ± i√{discr})/{2*a}")
+                elif sqr[0]!=1:
+                    await ctx.send (f"{ctx.author.display_name}, equation: x = ({-b} ± {sqr[0]}i√{sqr[1]})/{2*a}")
     elif a==0 & b==0:
-        await ctx.send(f"{ctx.author.display_name}, equation: There is no x to solve for")
+        await ctx.send( f"{ctx.author.display_name}, equation: There is no x to solve for")
 
 @bot.command(name = "sqrt_simplifier", help = "Simplifies square roots, takes in radicand as argument.")
 async def sqrt_simplifier(ctx, radicand:int):
@@ -107,7 +118,7 @@ async def divide(ctx, x:int,y:int):
 
 def perfect_squares_generator(n):
     s = 2
-    while n>s**2:
+    while n>=s**2:
         yield s**2
         s+=1
 def square_root_simplifier(radicand):
@@ -115,7 +126,7 @@ def square_root_simplifier(radicand):
     n = perfect_squares_generator(radicand/2)
     try:
         s = next(n)
-        while s<radicand/2:
+        while s<=radicand/2:
             while radicand%s==0:
                 radicand/=s
                 coefficient*=math.sqrt(s)
