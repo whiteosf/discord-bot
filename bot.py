@@ -57,7 +57,7 @@ async def sqrt_simplifier(ctx, radicand:int):
 
 
 @bot.command(name = "plot", help = "")
-async def plot(ctx, *args:int, x:int):
+async def plot(ctx, *args, x:int):
     args=[*args]
     answr=0
     degree = len(args)-1
@@ -92,7 +92,7 @@ async def linear_systems(ctx, a;int, b:int, c:int, d:int):
     await ctx.send(f"Your x value is equal to {x} and your y value is equal to {y}")
     
 @bot.command("add_subtract", help = "takes values that you want to add and subtract. eg. putting in 12, -10, 1 would give you 3.")
-async def add_and_subtract(ctx, *args:int):
+async def add_and_subtract(ctx, *args):
     await ctx.send(sum(*args))
     
 @bot.command(name = "multiply", help= "multiplies two values")
