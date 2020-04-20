@@ -36,9 +36,9 @@ async def equation(ctx, a:int, b:int, c:int):
                 await ctx.send (f"{ctx.author.display_name}, equation: x = {-b+num/2*a} ,  {-b-num/2*a}")
             elif num%1!=0:
                 if sqr[0]==1:
-                    await ctx.send (f"{ctx.author.display_name}, equation: x = ({b} ± √{sqr[1]})/{2*a} ")
+                    await ctx.send (f"{ctx.author.display_name}, equation: x = ({-b} ± √{sqr[1]})/{2*a} ")
                 elif sqr[0]!=1:
-                    await ctx.send (f"{ctx.author.display_name}, equation: x = ({b} ± {sqr[0]}√{sqr[1]})/{2*a} ")
+                    await ctx.send (f"{ctx.author.display_name}, equation: x = ({-b} ± {sqr[0]}√{sqr[1]})/{2*a} ")
         elif discr==0:
             await ctx.send (f"{ctx.author.display_name}, equation: x = {-b/2*a} ")
         else:
