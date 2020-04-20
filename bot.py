@@ -113,8 +113,8 @@ async def linear_systems(ctx, a:int, b:int, c:int, d:int):
 async def add_and_subtract(ctx, *values):
     ans=0
     for i in values:
-        ans= ans + i
-    await ctx.send(f"{ctx.authour.display_name}, add_sub: {ans}")
+        ans= ans + float(i)
+    await ctx.send(f"{ctx.author.display_name}, add_sub: {ans}")
 
 
     
