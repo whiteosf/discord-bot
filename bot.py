@@ -84,8 +84,8 @@ async def plot(ctx, *args, x:float):
     elif x==1:
         answr=sum(args)
     else:
-        for i in range(0, degree+1):
-            answr+= args[i]*x**degree
+        for i in args:
+            answr+= i*x**degree
             degree-=1
     await ctx.send(f"{ctx.author.display_name}, plot: y = {answr}")
 
