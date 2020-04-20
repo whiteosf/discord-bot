@@ -59,11 +59,17 @@ async def equation(ctx, a:int, b:int, c:int):
 async def sqrt_simplifier(ctx, radicand:int):
     ans = square_root_simplifier(radicand)
     if radicand>0:
-        await ctx.send(f"{ctx.author.display_name} sqrt simplifier: {ans[0]}√{ans[1]}")
+        if ans[1]==1:
+            await ctx.send(f"{ctx.author.display_name} sqrt simplifier: {ans[0]}")
+        else:
+            await ctx.send(f"{ctx.author.display_name} sqrt simplifier: {ans[0]}√{ans[1]}")
     elif radicand == 0:
         await ctx.send("0")
     else:
-        await ctx.send(f"{ctx.author.display_name}, sqrt simplifier: {ans[0]}i√{ans[1]}")
+        if ans[1]==1:
+            await ctx.send(f"{ctx.author.display_name}, sqrt simplifier: {ans[0]}i")
+        else:
+            await ctx.send(f"{ctx.author.display_name}, sqrt simplifier: {ans[0]}i√{ans[1]}")
         
 
 
@@ -123,10 +129,10 @@ def perfect_squares_generator(n):
         s+=1
 def square_root_simplifier(radicand):
     coefficient = 1
-    n = perfect_squares_generator(radicand/2)
+    n = perfect_squares_generator(radicand)
     try:
         s = next(n)
-        while s<=radicand/2:
+        while s<=radicand:
             while radicand%s==0:
                 radicand/=s
                 coefficient*=math.sqrt(s)
