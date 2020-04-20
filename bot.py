@@ -45,7 +45,7 @@ async def equation(ctx, a, b, c):
         await ctx.send(f"{ctx.author.display_name}, equation: There is no x to solve for")
 
 @bot.command(name = "sqrt_simplifier", help = "Simplifies square roots, takes in radicand as argument.")
-async def sqrt_simplifier(ctx, radicand):
+async def sqrt_simplifier(ctx, int(radicand)):
     ans = square_root_simplifier(radicand)
     if radicand>0:
         await ctx.send(f"{ctx.author.display_name} sqrt simplifier: {ans[0]}√{ans[1]}")
