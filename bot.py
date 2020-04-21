@@ -76,15 +76,15 @@ async def sqrt_simplifier(ctx, radicand:int):
 
 @bot.command(name = "plot", help = "")
 async def plot(ctx, *args, x:float):
-    args=[float(i) for i in args]
+    argst=[float(i) for i in args]
     answr=0
-    degree = len(args)-1
+    degree = len(argst)-1
     if x==0:
-        answr=args[-1]
+        answr=argst[-1]
     elif x==1:
-        answr=sum(args)
+        answr=sum(argst)
     else:
-        for i in args:
+        for i in argst:
             answr+= i*x**degree
             degree-=1
     await ctx.send(f"{ctx.author.display_name}, plot: y = {answr}")
